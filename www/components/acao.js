@@ -63,3 +63,28 @@ $(document).on("click","#calcular",function(){
 $(document).on("click","#irBuscar",function(){
   $(location).attr("href","listar.html");
 });
+
+$(document).on("click","#buscarRegistro",function(){
+  var parametro ={
+      "nome":$("#nomeBusca").val()
+    };
+    
+    $.ajax({
+      type:"post",//como vou enviar os dados ao servidor
+      url:"https://appmobile3i2.000webhostapp.com/buscar.php",//para onde vou enviar
+      data:parametro,
+      dataType:"json",
+      //caso esteja tudo certo executa esse codigo
+      success: function(data){
+        $("#nome").val(data.funcionario.nome);
+        $("#funcao").val(data.funcionario.funcao);
+        $("#entrada").val(data.funcionario.entrada);
+        $("#saida").val(data.funcionario.saida);
+        $("#valor").val(data.funcionario.valor);
+      },
+      //caso algo esteja errado executa esse codigo
+      error: function(data){
+        navigator.notification.alert("Erro ao buscar registros!");
+      }
+    });
+});
