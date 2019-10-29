@@ -59,3 +59,7 @@ $(document).on("click","#calcular",function(){
       }
     });
 });
+
+$(document).on("click","#irBuscar",function(){
+  $(location).attr("href","listar.html");
+});
