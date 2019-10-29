@@ -27,3 +27,15 @@ function preencheMinuto(){
     $("#minutoSaida").html(minuto);
 }
 
+$(document).on("click","#calcular",function(){
+  var horaEntrada =parseFloat($("option:selected",("#horaEntrada")).val());
+  var horaSaida = parseFloat($("option:selected",("#horaSaida")).val());
+  var minutoEntrada =parseFloat($("option:selected",("#minutoEntrada")).val());
+  var minutoSaida = parseFloat($("option:selected",("#minutoSaida")).val());
+  var valorHora = parseFloat($("option:selected",("#funcao")).val());
+  
+  var total = ((horaSaida + (minutoSaida/60)) - (horaEntrada + (minutoEntrada/60))) * valorHora;
+
+  $("#resultado").val(total.toFixed(2));
+ 
+});
