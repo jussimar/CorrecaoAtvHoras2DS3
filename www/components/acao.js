@@ -38,4 +38,24 @@ $(document).on("click","#calcular",function(){
 
   $("#resultado").val(total.toFixed(2));
  
+ var parametros ={
+      "nome":$("#nome").val(),
+      "entrada":horaEntrada+":"+minutoEntrada+":00",
+      "saida":horaSaida+":"+minutoSaida+":00",
+      "funcao":$("option:selected",("#funcao")).text(),
+      "valor": total.toFixed(2)
+  };
+  $.ajax({
+      type:"post",//como vou enviar os dados ao servidor
+      url:"https://appmobile3i2.000webhostapp.com/cadastra.php",//para onde vou enviar
+      data:parametros,//o que eu vou enviar
+      //caso esteja tudo certo executa esse codigo
+      success: function(data){
+        navigator.notification.alert(data);
+      },
+      //caso algo esteja errado executa esse codigo
+      error: function(data){
+        navigator.notification.alert("Erro ao cadastrar!");
+      }
+    });
 });
